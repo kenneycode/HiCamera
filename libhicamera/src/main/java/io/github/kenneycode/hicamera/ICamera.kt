@@ -2,6 +2,14 @@ package io.github.kenneycode.hicamera
 
 import android.graphics.SurfaceTexture
 
+/**
+ *
+ *      Coded by kenney
+ *
+ *      http://www.github.com/kenneycode
+ *
+ **/
+
 interface ICamera {
 
     fun start()

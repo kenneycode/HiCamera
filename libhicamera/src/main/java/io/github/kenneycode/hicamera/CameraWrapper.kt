@@ -3,6 +3,13 @@ package io.github.kenneycode.hicamera
 import android.graphics.SurfaceTexture
 import android.hardware.Camera
 
+/**
+ *
+ *      Coded by kenney
+ *
+ *      http://www.github.com/kenneycode
+ *
+ **/
 
 class CameraWrapper: ICamera {
 

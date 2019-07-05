@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.opengl.GLES30
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.util.Log
@@ -18,13 +19,23 @@ import io.github.kenneycode.hicamera.GLCameraView
 import io.github.kenneycode.hicamera.Size
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ *
+ *      Coded by kenney
+ *
+ *      http://www.github.com/kenneycode
+ *
+ **/
+
 class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 1)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 1)
+            }
         } else {
             runDemo()
         }
@@ -48,7 +59,7 @@ class MainActivity : Activity() {
 
             private val oes2RGBARenderer = OES2RGBARenderer()
             private val cropRenderer = CropRenderer()
-            private val effectRenderer = EffectRenderer()
+            private val effectRenderer = TestEffectRenderer()
             private val screenRenderer = ScreenRenderer()
             private lateinit var renderChain: RenderChain
 

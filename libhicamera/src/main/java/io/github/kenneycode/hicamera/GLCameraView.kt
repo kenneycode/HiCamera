@@ -6,6 +6,14 @@ import android.util.AttributeSet
 import io.github.kenneycode.glkit.GLTextureView
 import io.github.kenneycode.glkit.GLUtils
 
+/**
+ *
+ *      Coded by kenney
+ *
+ *      http://www.github.com/kenneycode
+ *
+ **/
+
 class GLCameraView : GLTextureView, GLTextureView.Callback, SurfaceTexture.OnFrameAvailableListener {
 
     init {
@@ -13,7 +21,7 @@ class GLCameraView : GLTextureView, GLTextureView.Callback, SurfaceTexture.OnFra
     }
 
     private var oesTexture = 0
-    private lateinit var st: SurfaceTexture
+    private var st: SurfaceTexture? = null
     private lateinit var camera: ICamera
     private var pendingInitTask: Runnable? = null
     var renderCallback: RenderCallback? = null
@@ -41,8 +49,8 @@ class GLCameraView : GLTextureView, GLTextureView.Callback, SurfaceTexture.OnFra
         renderCallback?.onInit()
         oesTexture = GLUtils.createOESTexture()
         st = SurfaceTexture(oesTexture)
-        st.setOnFrameAvailableListener(this)
-        camera.setSurfaceTexture(st)
+        st?.setOnFrameAvailableListener(this)
+        camera.setSurfaceTexture(st!!)
         camera.start()
     }
 
@@ -57,13 +65,13 @@ class GLCameraView : GLTextureView, GLTextureView.Callback, SurfaceTexture.OnFra
 
     override fun onRender(width: Int, height: Int) {
         val stMatrix = FloatArray(16)
-        st.getTransformMatrix(stMatrix)
+        st?.getTransformMatrix(stMatrix)
         renderCallback?.onRenderFrame(oesTexture, stMatrix, camera.getPreviewSize(), Size(width, height))
     }
 
     override fun onRelease() {
         camera.stop()
-        st.release()
+        st?.release()
         GLUtils.deleteTexture(oesTexture)
         renderCallback?.onRelease()
     }

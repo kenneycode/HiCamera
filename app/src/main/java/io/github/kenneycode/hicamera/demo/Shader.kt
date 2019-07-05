@@ -1,10 +1,18 @@
 package io.github.kenneycode.hicamera.demo
 
+/**
+ *
+ *      Coded by kenney
+ *
+ *      http://www.github.com/kenneycode
+ *
+ **/
+
 class Shader {
 
     companion object {
 
-        val EFFECT_FRAGMENT_SHADER =
+        val TEST_EFFECT_FRAGMENT_SHADER =
                 "#version 300 es\n" +
                 "precision mediump float;\n" +
                 "in vec2 v_textureCoordinate;\n" +
